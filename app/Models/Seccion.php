@@ -13,4 +13,11 @@ class Seccion extends Model
     protected $table = 'secciones';
 
     protected $fillable = ['nombre', 'seccion', 'nrc'];
+
+
+    public function alumnos()
+    {
+        return $this->belongsToMany(Alumno::class);
+    }
 }
+

@@ -12,4 +12,8 @@ class Alumno extends Model
     
     protected $fillable = ['nombre', 'correo', 'codigo'];
 
+    public function secciones()
+    {
+        return $this->belongsToMany(Seccion::class);
+    }
 }
