@@ -5,8 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Docente extends Model
+class Seccion extends Model
 {
-    /** @use HasFactory<\Database\Factories\DocenteFactory> */
+    /** @use HasFactory<\Database\Factories\SeccionFactory> */
     use HasFactory;
+    
+    protected $table = 'secciones';
+
+    protected $fillable = ['nombre', 'seccion', 'nrc'];
+
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class);
+    }
 }
+
