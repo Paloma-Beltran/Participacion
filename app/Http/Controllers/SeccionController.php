@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Seccion;
+use App\Models\Alumno;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreSeccionRequest;
 use App\Http\Requests\UpdateSeccionRequest;
 
@@ -13,9 +15,8 @@ class SeccionController extends Controller
      */
     public function index()
     {
-        //
+        return view('secciones.seccion-index', ['secciones' => Seccion::all()],);
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -37,7 +38,8 @@ class SeccionController extends Controller
      */
     public function show(Seccion $seccion)
     {
-        //
+        $alumnos = Alumno::all();
+        return view('secciones.seccion-show', compact('seccion', 'alumnos'));
     }
 
     /**
@@ -62,5 +64,10 @@ class SeccionController extends Controller
     public function destroy(Seccion $seccion)
     {
         //
+    }
+    public function actualizarAlumnosSeccion(Request $request, Alumno $seccion)
+    {
+        $seccion->alumnos()->sync($request->alumno_id);
+        return redirect()->route('seccion.show', $seccion);
     }
 }

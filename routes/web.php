@@ -10,12 +10,15 @@ use App\Models\Alumno;
 use App\Models\Seccion;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
 Route::resource('docente', DocenteController::class);
+
+Route::post('seccion/{seccion}/actualizar', [SeccionController::class, 'actualizarAlumnosSeccion'])
+    ->name('seccion.actualizar-alumnos')
+    ->middleware(['auth']);
 
 Route::resource('seccion', SeccionController::class)->middleware(['auth']);
 
@@ -28,7 +31,6 @@ Route::resource('alumno', AlumnoController::class)->middleware(['auth']);
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

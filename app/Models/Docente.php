@@ -5,18 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Seccion extends Model
+class Docente extends Model
 {
-    /** @use HasFactory<\Database\Factories\SeccionFactory> */
+    /** @use HasFactory<\Database\Factories\DocenteFactory> */
     use HasFactory;
-    
-    protected $table = 'secciones';
 
-    protected $fillable = ['nombre', 'seccion', 'nrc'];
+    public $timestamps = false;
 
-    public function docente()
+    protected $fillable = [
+        'nombre',
+        'correo',
+        'codigo',
+    ];
+
+    public function secciones()
     {
-        return $this->belongsTo(Docente::class);
+        return $this->hasMany(Seccion::class);
     }
 }
-

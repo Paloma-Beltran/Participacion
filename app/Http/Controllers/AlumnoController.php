@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-uuse App\Models\Alumno;
+use App\Models\Alumno;
 use App\Models\Seccion;
 use App\Http\Requests\StoreAlumnoRequest;
 use App\Http\Requests\UpdateAlumnoRequest;
